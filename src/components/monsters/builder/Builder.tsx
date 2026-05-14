@@ -132,7 +132,6 @@ export function Builder({ onBack, onForge, dark, setDark, store, showToast, shar
           <span className="brand-section">/ Criador de Monstro</span>
         </a>
         <div className="nav-actions">
-          <a href="/" className="btn-secondary" style={{ textDecoration: "none" }}>← Hub</a>
           <ThemeBtn dark={dark} setDark={setDark} />
           <button className="btn-primary" disabled={!canForge} onClick={() => { if (!canForge) { showToast(mode === "base" ? "Selecione um monstro base!" : "Digite um nome!", "error"); return; } onForge(creature!, traits, "", imageUrl); }}>⚗ Gerar Ficha</button>
         </div>

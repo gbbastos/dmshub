@@ -95,7 +95,6 @@ export function SheetView({ entryId, creature, traits, notes, image, onBack, onN
           <span className="brand-section">/ Ficha da Criatura</span>
         </a>
         <div className="nav-actions">
-          <a href="/" className="btn-secondary" style={{ textDecoration: "none" }}>← Hub</a>
           <button className="btn-secondary" onClick={onBack}>← Caldeirão</button>
           <button className="btn-secondary" onClick={onNew}>✦ Nova</button>
           <button className="btn-secondary" onClick={handleSave}>💾 Salvar</button>
