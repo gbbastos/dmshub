@@ -52,45 +52,21 @@ function t(lang: Lang, key: string): string {
   return dict[key] ?? (i18n.pt as Record<string, string>)[key] ?? key;
 }
 
-/* --- SVG icons --- */
-const MonsterIcon = () => (
-  <svg viewBox="0 0 160 200" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ width: "100%", height: "100%", maxWidth: 160, maxHeight: 160 }}>
-    <ellipse cx="80" cy="100" rx="55" ry="68" />
-    <circle cx="58" cy="78" r="10" />
-    <circle cx="102" cy="78" r="10" />
-    <circle cx="58" cy="78" r="3" fill="currentColor" stroke="none" />
-    <circle cx="102" cy="78" r="3" fill="currentColor" stroke="none" />
-    <path d="M60 110 Q80 128 100 110" />
-    <path d="M65 118 L65 126 M75 121 L75 129 M85 121 L85 129 M95 118 L95 126" />
-    <path d="M40 40 L52 65 M120 40 L108 65" />
-    <path d="M38 42 L30 32 M40 42 L38 30 M42 44 L46 32" />
-    <path d="M122 42 L130 32 M120 42 L122 30 M118 44 L114 32" />
-    <path d="M25 100 Q14 90 20 78 Q28 68 36 80" />
-    <path d="M135 100 Q146 90 140 78 Q132 68 124 80" />
-  </svg>
-);
-
-const MapIcon = () => (
-  <svg viewBox="0 0 160 160" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{ width: "100%", height: "100%", maxWidth: 160, maxHeight: 160 }}>
-    {[
-      [80, 46], [113, 64], [113, 100], [80, 118], [47, 100], [47, 64],
-      [80, 10], [47, 28], [113, 28],
-      [47, 46], [113, 46],
-      [30, 82], [130, 82],
-      [47, 118], [113, 118],
-      [80, 136],
-    ].map(([cx, cy], i) => (
-      <polygon key={i} points={`${cx},${cy - 18} ${cx + 16},${cy - 9} ${cx + 16},${cy + 9} ${cx},${cy + 18} ${cx - 16},${cy + 9} ${cx - 16},${cy - 9}`} />
-    ))}
-  </svg>
-);
-
-const ShieldIcon = () => (
-  <svg viewBox="0 0 160 180" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ width: "100%", height: "100%", maxWidth: 160, maxHeight: 160 }}>
-    <path d="M80 16 L140 42 L140 96 Q140 148 80 168 Q20 148 20 96 L20 42 Z" />
-    <path d="M80 36 L122 56 L122 96 Q122 134 80 150 Q38 134 38 96 L38 56 Z" opacity="0.4" />
-    <path d="M80 72 L88 90 L108 93 L94 107 L97 128 L80 119 L63 128 L66 107 L52 93 L72 90 Z" />
-  </svg>
+/* --- Mask icon component --- */
+const MaskIcon = ({ src }: { src: string }) => (
+  <div style={{
+    width: "100%", height: "100%", maxWidth: 180, maxHeight: 180,
+    backgroundColor: "currentColor",
+    WebkitMaskImage: `url(${src})`,
+    maskImage: `url(${src})`,
+    WebkitMaskPosition: "center",
+    maskPosition: "center",
+    WebkitMaskRepeat: "no-repeat",
+    maskRepeat: "no-repeat",
+    WebkitMaskSize: "contain",
+    maskSize: "contain",
+    transition: "background-color 0.4s ease, transform 0.5s cubic-bezier(0.2,0.9,0.3,1)",
+  }} />
 );
 
 /* --- Runes ring SVG --- */
@@ -153,9 +129,9 @@ function RunesSVG() {
 }
 
 const CARDS = [
-  { id: "monster", href: "/monsters", status: "live",  Icon: MonsterIcon, titleKey: "card.monster.title" },
-  { id: "map",     href: "/map",      status: "live",  Icon: MapIcon,     titleKey: "card.map.title"     },
-  { id: "shield",  href: "#",         status: "dev",   Icon: ShieldIcon,  titleKey: "card.shield.title"  },
+  { id: "monster", href: "/monsters", status: "live", icon: "/icons/goblin.png",  titleKey: "card.monster.title" },
+  { id: "map",     href: "/map",      status: "live", icon: "/icons/map.png",     titleKey: "card.map.title"     },
+  { id: "shield",  href: "#",         status: "dev",  icon: "/icons/shield.png",  titleKey: "card.shield.title"  },
 ];
 
 export default function Home() {
@@ -294,12 +270,12 @@ export default function Home() {
           </div>
 
           <div className="lp-grid">
-            {CARDS.map(({ id, href, status, Icon, titleKey }) => (
+            {CARDS.map(({ id, href, status, icon, titleKey }) => (
               <Link key={id} href={href} className="lp-card">
                 <span className={`lp-card-tag${status === "live" ? " live" : ""}`}>
                   {t(lang, status === "live" ? "card.tag.live" : "card.tag.dev")}
                 </span>
-                <div className="lp-card-icon"><Icon /></div>
+                <div className="lp-card-icon"><MaskIcon src={icon} /></div>
                 <h3 className="lp-card-title">{t(lang, titleKey)}</h3>
               </Link>
             ))}
