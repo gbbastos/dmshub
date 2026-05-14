@@ -126,9 +126,11 @@ export function Builder({ onBack, onForge, dark, setDark, store, showToast, shar
   return (
     <div className="builder-page">
       <nav className="topnav">
-        <div className="brand" style={{ cursor: "pointer" }} onClick={goHome}>
-          <div className="brand-icon" /><span className="brand-name">Monster&apos;s Cauldron</span>
-        </div>
+        <a href="/" className="brand" style={{ textDecoration: "none" }}>
+          <div className="brand-icon" />
+          <span className="brand-name">DM&apos;s Hub</span>
+          <span className="brand-section">/ Criador de Monstro</span>
+        </a>
         <div className="nav-actions">
           <a href="/" className="btn-secondary" style={{ textDecoration: "none" }}>← Hub</a>
           <ThemeBtn dark={dark} setDark={setDark} />
@@ -270,7 +272,7 @@ export function Builder({ onBack, onForge, dark, setDark, store, showToast, shar
               }
             </div>
             {traits.length > 0 && <div style={{ textAlign: "right", marginTop: 6 }}><button className="btn-secondary" style={{ fontSize: ".72rem", color: "#dd4444", borderColor: "#dd4444" }} onClick={() => setTraits([])}>Limpar todos</button></div>}
-            {creature && <div style={{ marginTop: 16 }}><CREstimator creature={creature} traits={traits} /></div>}
+            {/* CREstimator removido temporariamente */}
             <div className="forge-cta">
               <button className="btn-primary btn-forge" disabled={!canForge} onClick={() => { if (!canForge) { showToast(mode === "base" ? "Selecione um monstro!" : "Digite um nome!", "error"); return; } onForge(creature!, traits, "", imageUrl, null, savedTags); }}>⚗ Forjar Criatura</button>
             </div>

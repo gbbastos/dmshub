@@ -126,6 +126,7 @@ body{font-family:'DM Sans','Inter',sans-serif;background:var(--bg);color:var(--t
 .brand-icon{width:16px;height:16px;border:1.5px solid var(--text2);transform:rotate(45deg);position:relative;flex-shrink:0}
 .brand-icon::after{content:"";position:absolute;inset:3px;border:1px solid var(--text2);opacity:.5}
 .brand-name{font-family:'Cormorant Garamond','DM Sans',serif;font-weight:600;font-size:1.15rem;letter-spacing:-.01em;color:var(--text2)}
+.brand-section{font-family:'DM Sans','Inter',sans-serif;font-size:.78rem;font-weight:400;color:var(--text3);letter-spacing:.01em;margin-left:2px}
 .nav-actions{display:flex;gap:10px;align-items:center}
 
 /* ── MODAL ── */

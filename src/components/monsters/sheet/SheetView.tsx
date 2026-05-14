@@ -89,9 +89,11 @@ export function SheetView({ entryId, creature, traits, notes, image, onBack, onN
   return (
     <div className="sheet-page">
       <nav className="topnav no-print">
-        <div className="brand" style={{ cursor: "pointer" }} onClick={goHome}>
-          <div className="brand-icon" /><span className="brand-name">Monster&apos;s Cauldron</span>
-        </div>
+        <a href="/" className="brand" style={{ textDecoration: "none" }}>
+          <div className="brand-icon" />
+          <span className="brand-name">DM&apos;s Hub</span>
+          <span className="brand-section">/ Ficha da Criatura</span>
+        </a>
         <div className="nav-actions">
           <a href="/" className="btn-secondary" style={{ textDecoration: "none" }}>← Hub</a>
           <button className="btn-secondary" onClick={onBack}>← Caldeirão</button>
@@ -126,9 +128,7 @@ export function SheetView({ entryId, creature, traits, notes, image, onBack, onN
         <div className="sheet-block-wrap">
           <StatBlock data={creature} extra={traits} image={image} interactive onRoll={handleAbilityRoll} onSpellClick={handleSpellClick} />
         </div>
-        <div className="no-print" style={{ marginBottom: 16 }}>
-          <CREstimator creature={creature} traits={traits} />
-        </div>
+        {/* CREstimator removido temporariamente */}
         <div className="no-print card" style={{ padding: "18px", marginBottom: 16 }}>
           <SH label="Notas do Mestre" right={<button className="btn-secondary btn-sm" onClick={saveNotes}>Salvar Notas</button>} />
           <textarea className="mc-input" rows={4} placeholder="Segredos, táticas, falas, ganchos de história... (não aparece no PDF)" value={localNotes} onChange={e => setLocalNotes(e.target.value)} style={{ resize: "vertical", lineHeight: 1.6 }} />
